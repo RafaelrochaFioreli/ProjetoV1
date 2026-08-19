@@ -1,0 +1,92 @@
+openapi: 3.0.0
+
+info:
+  title: Conversor de Decimal para Binário e Hexadecimal API
+  version: 1.0.0
+  description: |
+    Uma API que converte números decimais para binário e hexadecimal.
+
+servers:
+  - url: http://localhost:3000
+    description: Servidor de desenvolvimento local
+
+paths:
+  /to-binary/{decimal}:
+    get:
+      summary: Converter decimal para binário
+      description: Converte um número decimal para sua representação binária.
+
+      parameters:
+        - name: decimal
+          in: path
+          required: true
+          description: O número decimal a ser convertido para binário.
+          schema:
+            type: integer
+            example: 10
+
+      responses:
+        '200':
+          description: Conversão realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  decimal:
+                    type: integer
+                    example: 10
+                  binary:
+                    type: string
+                    example: "1010"
+
+        '400':
+          description: Número decimal inválido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Número decimal inválido"
+
+  /to-hex/{decimal}:
+    get:
+      summary: Converter decimal para hexadecimal
+      description: Converte um número decimal para sua representação hexadecimal.
+
+      parameters:
+        - name: decimal
+          in: path
+          required: true
+          description: O número decimal a ser convertido para hexadecimal.
+          schema:
+            type: integer
+            example: 255
+
+      responses:
+        '200':
+          description: Conversão realizada com sucesso.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  decimal:
+                    type: integer
+                    example: 255
+                  hex:
+                    type: string
+                    example: "FF"
+
+        '400':
+          description: Número decimal inválido.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Número decimal inválido"
